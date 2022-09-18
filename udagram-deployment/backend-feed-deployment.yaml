@@ -1,3 +1,5 @@
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,14 +15,12 @@ spec:
         run: backend-feed
     spec:
       containers:
-        - image: docker.io/mutemipo/udagram-api-feed
-          name: backend-feed
-          imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "200Mi"
-            limits:
-              memory: "400Mi"
-          command: ["stress"]
-          args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
-
+      - name: backend-feed
+        image: docker.io/mutemipo/udagram-api-feed
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m

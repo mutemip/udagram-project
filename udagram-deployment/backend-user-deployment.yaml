@@ -14,13 +14,11 @@ spec:
     spec:
       containers:
       - name: backend-user
-        image: docker.io/mutemipo/udagram-api-user:v3
+        image: docker.io/mutemipo/udagram-api-user
         ports:
         - containerPort: 80
-          resources:
-            requests:
-              memory: "200Mi"
-            limits:
-              memory: "400Mi"
-          command: ["stress"]
-          args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
