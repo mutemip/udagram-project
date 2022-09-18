@@ -17,9 +17,10 @@ spec:
         image: docker.io/mutemipo/udagram-api-user
         ports:
         - containerPort: 80
-        resources:
-          limits:
-            cpu: 500m
-          requests:
-            cpu: 200m
-
+          resources:
+            requests:
+              memory: "200Mi"
+            limits:
+              memory: "400Mi"
+          command: ["stress"]
+          args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
